@@ -1,11 +1,116 @@
 @import url(base.css);
 
+/* hintergrund mit blend*/
+body {
+    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 50%, #f9a8d4 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #9d174d;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* formular als  Karte */
+form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; 
+}
+
+/* Abstände für einzelnen felder */
+div {
+    margin-bottom: 20px;
+}
+
+/* Labels gestylet */
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+
 input,
 select,
 textarea {
-  width: 100%;
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #f3f4f6;
+    border-radius: 10px;
+    font-size: 1.1rem; 
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Damit padding Breite nicht sprengt */
 }
 
-div {
-  margin: 4px 0px;
+/* Fokus eeffekt beim reinklicken */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #ec4899; /* Pink Rahmen */
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/*Buttons nebeneinander: */
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+/* Save Button farbe*/
+button[onclick="putMovie()"] {
+    background-color: #ec4899;
+    color: white;
+}
+
+button[onclick="putMovie()"]:hover {
+    background-color: #db2777;
+    transform: translateY(-2px);
+}
+
+/* Cancel Button*/
+button[onclick*="index.html"] {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+button[onclick*="index.html"]:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px);
+}
+
+select[multiple] {
+    height: 150px;
 }

@@ -66,34 +66,41 @@ function putMovie() {
     - Configure the function below as the onload event handler
     - Send the movie data as JSON
   */
+  const movie = getMovie();
 
   const xhr = new XMLHttpRequest();
+
+  xhr.open("PUT", "/movies/" + movie.imdbID);
+
+  xhr.setRequestHeader("Content-Type", "application/json");
+
   xhr.onload = function () {
-    if (xhr.status == 200 || xhr.status === 204) {
+    if (xhr.status == 200 || xhr.status == 201) {
       location.href = "index.html";
     } else {
-      alert("Saving of movie data failed. Status code was " + xhr.status);
+      alert("Fehler beim Speichern!");
     }
   };
+
+  xhr.send(JSON.stringify(movie));
 }
 
-/** Loading and setting the movie data for the movie with the passed imdbID */
-const imdbID = new URLSearchParams(window.location.search).get("imdbID");
+window.onload = function () {
+  const params = new URLSearchParams(window.location.search);
+  const imdbID = params.get("imdbID");
 
-const xhr = new XMLHttpRequest();
-xhr.open("GET", "/movies/" + imdbID);
-xhr.onload = function () {
-  if (xhr.status === 200) {
-    setMovie(JSON.parse(xhr.responseText));
-  } else {
-    alert(
-      "Loading of movie data failed. Status was " +
-        xhr.status +
-        " - " +
-        xhr.statusText,
-    );
-  }
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("GET", "/movies/" + imdbID);
+
+  xhr.onload = function () {
+    if (xhr.status == 200) {
+      const movie = JSON.parse(xhr.responseText);
+
+      setMovie(movie);
+      document.getElementById("imdbID").value = movie.imdbID;
+    }
+  };
+
+  xhr.send();
 };
-
-xhr.send();
-
