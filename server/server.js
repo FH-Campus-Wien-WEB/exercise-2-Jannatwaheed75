@@ -7,14 +7,13 @@ const app = express();
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'files')));
 
-// Configure a 'get' endpoint for all movies..
+
 app.get('/movies', function (req, res) {
   /* Task 1.2. Remove the line below and eturn the movies from 
      the model as an array */
   res.json(Object.values(movieModel));
 });
 
-// Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {
   /* Task 2.1. Remove the line below and add the 
     functionality here */
